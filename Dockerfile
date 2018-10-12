@@ -32,6 +32,6 @@ ENV MYSQL_PASS "dockerpass"
 VOLUME ["/etc/mysql", "/var/lib/mysql", "/var/www/html"]
 
 # Expose ports
-EXPOSE 80 3306 25
+EXPOSE 80 3306
 
 CMD ["/run.sh"]
