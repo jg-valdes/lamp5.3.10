@@ -4,7 +4,7 @@ MAINTAINER Juan Gabriel Valdés Díaz <jgvaldes1992@gmail.com>
 
 # Install git, nano, apache and php extensions 
 RUN apt-get update && \
-	apt-get -y install git nano apache2 libapache2-mod-php5 mysql-server php5-mysql php-apc php5-mcrypt
+	apt-get -y install git nano composer apache2 libapache2-mod-php5 mysql-server php5-mysql php-apc php5-mcrypt
 
 # Remove pre installed databases
 RUN rm -rf /var/lib/mysql/*
@@ -22,5 +22,10 @@ VOLUME ["/etc/mysql", "/var/lib/mysql", "/var/www/html"]
 
 # Expose ports
 EXPOSE 80 3306 25
+
+# Run all services
+#RUN source /etc/apache2/envvars
+RUN exec apache2 -D FOREGROUND
+RUN exec mysqld_safe
 
 CMD ["/bin/bash"]
